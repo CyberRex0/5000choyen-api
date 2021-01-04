@@ -105,11 +105,10 @@ function doDraw() {
   _canvas.redrawTop();
   _canvas.redrawBottom();
  }
-
 }
 
-window.addEventListener("load", function () {
-  setTimeout(doDraw, 500);
+window.addEventListener("DOMContentLoaded", function () {
+  setTimeout(doDraw, 100);
 });
 </script>
 
