@@ -89,8 +89,7 @@
 	</div>
 
 <script type="text/javascript">
-window.addEventListener("load", function () {
- 
+function doDraw() {
  var queryString = window.location.href.split('?')[1];
  var args = [...new URLSearchParams(queryString).entries()].reduce((obj, e) => ({...obj, [e[0]]: e[1]}), {});
  //alert(args.a);
@@ -102,11 +101,15 @@ window.addEventListener("load", function () {
  in2.value = args.bottom;
  
  // 何度か呼び出して本来のフォントで描画できるようにする
- for (var i=0; i<10; i++) {
+ for (var i=0; i<2; i++) {
   _canvas.redrawTop();
   _canvas.redrawBottom();
  }
 
+}
+
+window.addEventListener("load", function () {
+  setTimeout(doDraw, 500);
 });
 </script>
 
