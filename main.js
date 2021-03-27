@@ -3,6 +3,7 @@ const { Canvas } = require("./canvas.js");
 
 const http = require('http');
 const escape = require('escape-html');
+const process = require('process');
 
 const APP_VER = '1.0';
 
@@ -67,4 +68,4 @@ http.createServer(function (req, resp) {
   resp.end('<h1>Not Found</h1><p>The requested URL '+escape(req.url)+' was not found on this server.</p>');
 
 
-}).listen(8080);
+}).listen(process.env.PORT);
