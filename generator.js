@@ -29,7 +29,11 @@ Generator.prototype.createBuffer = function(width, height, callback) {
   const ctx = canvas.getContext('2d');
   ctx.putImageData(data, 0, 0);
   canvas.toBuffer((err, buf) => {
-    if (err) throw err;
+    if (err) {
+      console.log(err);
+      callback('error');
+      return;
+    }
     return callback(buf);
   });
 }
