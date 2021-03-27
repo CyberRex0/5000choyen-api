@@ -54,7 +54,10 @@ http.createServer(function (req, resp) {
     canvas.redrawTop(args.top);
     canvas.redrawBottom(args.bottom);
     resp.writeHead(200, {'Content-type': 'image/png'});
-    resp.end(canvas.createBuffer());
+    canvas.createBuffer(function (data) {
+       resp.write(data);
+    });
+    resp.end();
 
     return;
 

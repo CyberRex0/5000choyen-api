@@ -21,14 +21,17 @@ Generator.prototype.save = function(width, height) {
   
 }
 
-Generator.prototype.createBuffer = function(width, height) {
+Generator.prototype.createBuffer = function(width, height, callback) {
   const data = this.ctx.getImageData(0, 0, width, height);
   const canvas_width = data.width;
   const canvas_height = data.height - 10;
   const canvas = createCanvas(canvas_width, canvas_height);
   const ctx = canvas.getContext('2d');
   ctx.putImageData(data, 0, 0);
-  return canvas.toBuffer('image/png', {compressionLevel: 10, filters: canvas.PNG_FILTER_NONE});
+  canvas.toBuffer((err, buf) => {
+    if (err) throw err;
+    return callback(buf);
+  });
 }
 
 module.exports = {Generator}

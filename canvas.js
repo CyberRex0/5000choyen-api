@@ -116,8 +116,8 @@ Canvas.prototype.save = function() {
   this.drawer.save();
 }
 
-Canvas.prototype.createBuffer = function () {
-  this.drawer.createBuffer();
+Canvas.prototype.createBuffer = function (callback) {
+  this.drawer.createBuffer(callback);
 }
 
 module.exports = {Canvas}
