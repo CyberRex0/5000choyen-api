@@ -1,13 +1,18 @@
 /* globals SETTINGS, Drawer */
-var Canvas = function(canvas) {
+
+const { Drawer } = require('./drawer.js');
+const { SETTINGS } = require('./settings.js');
+
+const Canvas = function(canvas) {
   this.canvas = canvas;
-  this.canvas.addEventListener('mousedown', this.onDown.bind(this), false);
+  /*this.canvas.addEventListener('mousedown', this.onDown.bind(this), false);
   this.canvas.addEventListener('mousemove', this.onMove.bind(this), false);
   this.canvas.addEventListener('mouseup', this.onUp.bind(this), false);
   this.canvas.addEventListener('touchstart', this.onTouchStart.bind(this), false);
   this.canvas.addEventListener('touchmove', this.onTouchMove.bind(this), false);
   this.canvas.addEventListener('touchend', this.onTouchEnd.bind(this), false);
-
+  */
+  
   this.ctx = canvas.getContext('2d');
   this.ctx.lineJoin = 'round';
   this.ctx.lineCap = 'round';
@@ -81,8 +86,7 @@ Canvas.prototype.lowerEndPosition = function() {
   return this.canvas.getBoundingClientRect().top + (this.canvas.height - 10);
 }
 
-Canvas.prototype.redrawTop = function () {
-  const text  = document.getElementById("textboxTop").value;
+Canvas.prototype.redrawTop = function (text) {
   const x     = 70;
   const y     = 100;
   const order = SETTINGS.BACKGROUND_ORDER();
@@ -90,11 +94,11 @@ Canvas.prototype.redrawTop = function () {
   if (SETTINGS.TEXT_ORDER() === "image")
     this.redrawImage();
   else
-    this.redrawBottom();
+    this.redrawBottom(text);
 }
 
-Canvas.prototype.redrawBottom = function (offsetX) {
-  const text  = document.getElementById("textboxBottom").value.replace(/！/, `!`);
+Canvas.prototype.redrawBottom = function (txt, offsetX) {
+  const text  = txt.replace(/！/, `!`);
   const x     = (offsetX || this.offset.bottom.x) + 70;
   const y     = this.offset.bottom.y + 100;
   const order = SETTINGS.BACKGROUND_ORDER();
@@ -112,23 +116,4 @@ Canvas.prototype.save = function() {
   this.drawer.save();
 }
 
-Canvas.prototype.newtab = function() {
-  const order  = SETTINGS.TEXT_ORDER();
-  const color  = SETTINGS.BACKGROUND_ORDER();
-  const top    = document.getElementById("textboxTop").value;
-  const bottom = document.getElementById("textboxBottom").value.replace(/！/, `!`);
-  const tx     = 70;
-  const ty     = 100;
-  const bx     = this.offset.bottom.x + 70;
-  const by     = this.offset.bottom.y + (order === `text` ? 100 : 0);
-  const q      = 
-    'top=' + top +
-    '&bottom=' + bottom +
-    '&tx=' + tx +
-    '&ty=' + ty +
-    '&bx=' + bx +
-    '&by=' + by +
-    '&order=' + order +
-    '&color=' + color;
-  this.drawer.newtab(q);
-}
+module.exports = {Canvas}

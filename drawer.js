@@ -1,4 +1,9 @@
 /* globals SETTINGS, Hoshii, Generator */
+
+const { Hoshii } = require('./hoshii.js');
+const { Generator } = require('./generator.js');
+const { SETTINGS } = require('./settings.js');
+
 var Drawer = function(ctx) {
   this.ctx         = ctx;
   this.actualWidth = { top: 0, bottom: 0 };
@@ -207,6 +212,7 @@ Drawer.prototype.redrawImage = function(x, y, bgColor, callback) {
     }.bind(this);
   }
 
+  //this.actualWidth.bottom = 370 + x;
   this.actualWidth.bottom = 370 + x;
 
   if (callback) callback();
@@ -214,7 +220,8 @@ Drawer.prototype.redrawImage = function(x, y, bgColor, callback) {
 
 Drawer.prototype.save = function() {
   const width = Math.max(this.actualWidth.top, this.actualWidth.bottom);
-  const height = this.ctx.canvas.height;
+  //const width = this.ctx.canvas.width;
+  const height = this.ctx.canvas.height / 4;
   this.generator.save(width, height);
 }
 
@@ -225,3 +232,5 @@ Drawer.prototype.newtab = function(q) {
   q += '&height=' + height;
   window.open('result.html?' + q);
 }
+
+module.exports = {Drawer}

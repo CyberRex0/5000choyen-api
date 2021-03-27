@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/yurafuca/5000choyen#readme",
   "dependencies": {
+    "canvas": "^2.7.0",
+    "escape-html": "^1.0.3",
     "eslint": "^4.2.0"
   }
 }

@@ -1,12 +1,13 @@
 const SETTINGS = (function() {
   return {
     TEXT_ORDER: function() {
-      return document.querySelector('input[name="text-order"]:checked').value;
+      return 'text';
     },
     BACKGROUND_ORDER: function() {
-      return document.querySelector('input[name="background-order"]:checked').value;
+      return 'transparent';
     }
   };
 })();
 
-window.SETTINGS = SETTINGS;
+//window.SETTINGS = SETTINGS;
+module.exports = {SETTINGS}

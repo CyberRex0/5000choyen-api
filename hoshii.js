@@ -1,3 +1,6 @@
+//import { Image } from 'canvas'
+const { Image } = require('canvas');
+
 var Hoshii = function() {
   this.self = new Image();
   this.self.src = `images/hoshii.png`;
@@ -10,6 +13,9 @@ Hoshii.prototype.isLoaded = function() {
 }
 
 Hoshii.prototype.drawTo = function(ctx, x, y) {
+  return;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.drawImage(this.self, x + 5, y + 2);
 }
+
+module.exports = {Hoshii}
