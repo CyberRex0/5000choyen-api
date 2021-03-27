@@ -225,6 +225,12 @@ Drawer.prototype.save = function() {
   this.generator.save(width, height);
 }
 
+Drawer.prototype.createBuffer = function () {
+  const width = Math.max(this.actualWidth.top, this.actualWidth.bottom);
+  const height = this.ctx.canvas.height / 4;
+  this.generator.createBuffer(width, height);
+}
+
 Drawer.prototype.newtab = function(q) {
   const width = Math.max(this.actualWidth.top, this.actualWidth.bottom);
   const height = this.ctx.canvas.height - 10;
