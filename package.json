@@ -1,8 +1,8 @@
 {
-  "name": "5000choyen",
+  "name": "5000choyen-api",
   "version": "1.0.0",
   "description": "5000兆円風の文字を描画するWebツールです．",
-  "main": "index.js",
+  "main": "main.js",
   "directories": {
     "doc": "docs"
   },
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yurafuca/5000choyen.git"
+    "url": "git+https://github.com/CyberRex0/5000choyena-api.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yurafuca/5000choyen/issues"
+    "url": "https://github.com/CyberRex0/5000choyen-api/issues"
   },
-  "homepage": "https://github.com/yurafuca/5000choyen#readme",
+  "homepage": "https://github.com/CyberRex0/5000choyen-api#readme",
   "dependencies": {
     "canvas": "^2.7.0",
     "escape-html": "^1.0.3",
