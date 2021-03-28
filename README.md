@@ -3,11 +3,13 @@
 
 # how to use
 
-https:\/\/gosenchoyenapi.herokuapp.com/image?top=上部文字列&bottom=下部文字列
+http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文字列
 
 ↓
 
 ![](https://gosenchoyenapi.herokuapp.com/image?top=上部文字列&bottom=下部文字列)
+
+注意: **HTTPSは使えません。**
 
 # spec
 画像形式: PNG (アルファチャンネルあり、背景透明)
@@ -18,7 +20,7 @@ https:\/\/gosenchoyenapi.herokuapp.com/image?top=上部文字列&bottom=下部�
 
 基本解像度は1920x1080ですが、文字列の長さによっては横幅が増える可能性があります。
 
-Herokuでホストしていますが、過剰なアクセスはお控えください。
+過剰なアクセスはお控えください。
 
 # thanks
 このプログラムは、yurafuca様が作られたものをベースにNode.js向けに改良を加えつつ、サーバーサイドに移植したものです。
