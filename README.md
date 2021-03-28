@@ -7,7 +7,7 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 
 ↓
 
-![](https://gosenchoyenapi.herokuapp.com/image?top=上部文字列&bottom=下部文字列)
+![](http://5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文字列)
 
 注意: **HTTPSは使えません。**
 
