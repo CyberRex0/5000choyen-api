@@ -49,10 +49,14 @@ Noto Serif CJKjp Black
 これらのフォントはオープンフォントライセンスに基づきGoogle Fontsよりダウンロード可能です。
 
 # applications
+※採用事例歓迎です！！
 
 ## 怪しい日本語ジェネレーター
 by Submarine.online
 
 [Available on Google Play](https://play.google.com/store/apps/details?id=com.shenyusoftware.correctjp)
 
-※採用事例歓迎です！！
+## 唯香 -ゆいか- (Discordボット)
+by [ryoさん / ryosan1210](https://twitter.com/ryosan1210_0625)
+
+[公式ウェブサイト](https://yuika.ryosan1210.net/)
