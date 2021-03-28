@@ -47,3 +47,12 @@ Noto Sans CJKjp Black
 Noto Serif CJKjp Black
 
 これらのフォントはオープンフォントライセンスに基づきGoogle Fontsよりダウンロード可能です。
+
+# applications
+
+## 怪しい日本語ジェネレーター
+by Submarine.online
+
+[Available on Google Play](https://play.google.com/store/apps/details?id=com.shenyusoftware.correctjp)
+
+※採用事例歓迎です！！
