@@ -1,4 +1,4 @@
-const { createCanvas } = require("canvas");
+const { createCanvas, registerFont } = require("canvas");
 const { Canvas } = require("./canvas.js");
 
 const http = require('http');
@@ -9,6 +9,9 @@ const APP_VER = '1.0';
 
 /* globals Canvas */
 var _canvas = null;
+
+registerFont('./notobk-subset.otf', {family: 'notobk'});
+registerFont('./notoserifbk-subset.otf', {family: 'notoserifbk'});
 
 function initCanvas() {
   var canvas = createCanvas(1920, 1080);
@@ -71,4 +74,4 @@ http.createServer(function (req, resp) {
   resp.end('<h1>Not Found</h1><p>The requested URL '+escape(req.url)+' was not found on this server.</p>');
 
 
-}).listen(process.env.PORT);
+}).listen(process.env.PORT || 8080);
