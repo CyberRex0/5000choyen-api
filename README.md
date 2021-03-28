@@ -42,8 +42,8 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 # fonts
 このジェネレーターは以下のフォントを使用しています。
 
-Noto Sans JP Black
+Noto Sans CJKjp Black
 
-Noto Serif JP Black
+Noto Serif CJKjp Black
 
 これらのフォントはオープンフォントライセンスに基づきGoogle Fontsよりダウンロード可能です。
