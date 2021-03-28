@@ -13,7 +13,6 @@ Hoshii.prototype.isLoaded = function() {
 }
 
 Hoshii.prototype.drawTo = function(ctx, x, y) {
-  return;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.drawImage(this.self, x + 5, y + 2);
 }

@@ -225,18 +225,10 @@ Drawer.prototype.save = function() {
   this.generator.save(width, height);
 }
 
-Drawer.prototype.createBuffer = function (callback) {
+Drawer.prototype.createBuffer = function (t, callback) {
   const width = Math.max(this.actualWidth.top, this.actualWidth.bottom);
   const height = this.ctx.canvas.height / 4;
-  this.generator.createBuffer(width, height, callback);
-}
-
-Drawer.prototype.newtab = function(q) {
-  const width = Math.max(this.actualWidth.top, this.actualWidth.bottom);
-  const height = this.ctx.canvas.height - 10;
-  q += '&width=' + width; 
-  q += '&height=' + height;
-  window.open('result.html?' + q);
+  this.generator.createBuffer(width, height, t, callback);
 }
 
 module.exports = {Drawer}
