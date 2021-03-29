@@ -73,3 +73,10 @@ by [ryoさん / ryosan1210](https://twitter.com/ryosan1210_0625)
 by [名無し。](https://twitter.com/MNoNamer)
 
 [公式ウェブサイト](https://sevenbot.jp/)
+
+## 5000兆円欲しいジェネレーター
+by [ゆ～ぺぃ/YU-PEI](https://twitter.com/nerrog_blog)
+
+※Windows10向けUWPアプリです。
+
+[インストール方法](https://github.com/nerrog/5000choyen-gen#インストール)
