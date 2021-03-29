@@ -39,6 +39,11 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 このプログラムは、yurafuca様が作られたものをベースにNode.js向けに改良を加えつつ、サーバーサイドに移植したものです。
 原作リポジトリは[こちら](https://github.com/yurafuca/5000choyen)
 
+
+DDoS Protection by
+
+<img src="https://cyberrex.rsvr.jp/cf-logo-v-rgb.png" width="320">
+
 # fonts
 このジェネレーターは以下のフォントを使用しています。
 
