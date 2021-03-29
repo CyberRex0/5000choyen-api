@@ -20,9 +20,10 @@
   },
   "homepage": "https://github.com/CyberRex0/5000choyen-api#readme",
   "dependencies": {
+    "ajv": "^8.0.1",
     "canvas": "^2.7.0",
     "escape-html": "^1.0.3",
-    "eslint": "^4.2.0",
+    "eslint": "^4.19.1",
     "webp-converter": "^2.3.3"
   },
   "engines": {
