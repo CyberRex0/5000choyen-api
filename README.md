@@ -39,6 +39,11 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 このプログラムは、yurafuca様が作られたものをベースにNode.js向けに改良を加えつつ、サーバーサイドに移植したものです。
 原作リポジトリは[こちら](https://github.com/yurafuca/5000choyen)
 
+
+DDoS Protection by
+
+<img src="https://cyberrex.rsvr.jp/cf-logo-v-rgb.png" width="320">
+
 # fonts
 このジェネレーターは以下のフォントを使用しています。
 
@@ -47,3 +52,16 @@ Noto Sans CJKjp Black
 Noto Serif CJKjp Black
 
 これらのフォントはオープンフォントライセンスに基づきGoogle Fontsよりダウンロード可能です。
+
+# applications
+※採用事例歓迎です！！
+
+## 怪しい日本語ジェネレーター
+by Submarine.online
+
+[Available on Google Play](https://play.google.com/store/apps/details?id=com.shenyusoftware.correctjp)
+
+## 唯香 -ゆいか- (Discordボット)
+by [ryoさん / ryosan1210](https://twitter.com/ryosan1210_0625)
+
+[公式ウェブサイト](https://yuika.ryosan1210.net/)
