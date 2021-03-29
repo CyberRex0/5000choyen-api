@@ -6,7 +6,7 @@ const escape = require('escape-html');
 const process = require('process');
 const fs = require('fs');
 
-const APP_VER = '1.1';
+const APP_VER = '1.2';
 
 // webp-converter対策
 if (!fs.existsSync('node_modules/webp-converter/temp')) {
@@ -35,6 +35,7 @@ http.createServer(function (req, resp) {
 
     var hoshii = false;
     var noalpha = false;
+    var rainbow = false;
     var imgtype = 'png';
     
     if (args.top == undefined) {
@@ -51,6 +52,10 @@ http.createServer(function (req, resp) {
       noalpha = args.noalpha=='true' ? true : false;
     }
 
+    if (args.rainbow) {
+      rainbow = args.rainbow=='true' ? true : false;
+    }
+ 
     if (args.bottom == undefined && !hoshii) {
       resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
       resp.end('パラメータbottomが不足しています。');
@@ -72,12 +77,15 @@ http.createServer(function (req, resp) {
     /*resp.writeHead(200, {'Content-type': 'text/html'});
     resp.end('test');*/
     const canvas = new Canvas(createCanvas(1920,1080), {hoshii: hoshii, noalpha: noalpha});
-    canvas.redrawTop(args.top);
+
+    canvas.redrawTop(args.top, rainbow);
+
     if (! hoshii) {
-      canvas.redrawBottom(args.bottom);
+      canvas.redrawBottom(args.bottom, null, rainbow);
     } else {
       canvas.redrawImage();
     }
+
     resp.writeHead(200, {'Content-type': 'image/'+imgtype});
     canvas.createBuffer(imgtype, function (data) {
        resp.write(data);

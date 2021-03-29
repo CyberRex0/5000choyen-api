@@ -35,23 +35,33 @@ Canvas.prototype.lowerEndPosition = function() {
   return this.canvas.getBoundingClientRect().top + (this.canvas.height - 10);
 }
 
-Canvas.prototype.redrawTop = function (text) {
+Canvas.prototype.redrawTop = function (text, isRainbow) {
   const x     = 70;
   const y     = 100;
   const order = this.noalpha ? 'white' : 'transparent';
-  this.drawer.redrawTop(text, x, y, order);
+  
+  if (isRainbow) {
+    this.drawer.redrawTop_rainbow(text, x, y, order);
+  }else{
+    this.drawer.redrawTop(text, x, y, order);
+  }
+
   if (this.hoshii === true)
     this.redrawImage();
   else
-    this.redrawBottom(text);
+    this.redrawBottom(text, isRainbow);
 }
 
-Canvas.prototype.redrawBottom = function (txt, offsetX) {
+Canvas.prototype.redrawBottom = function (txt, offsetX, isRainbow) {
   const text  = txt.replace(/！/, `!`);
   const x     = (offsetX || this.offset.bottom.x) + 70;
   const y     = this.offset.bottom.y + 100;
   const order = this.noalpha ? 'white' : 'transparent';
-  this.drawer.redrawBottom(text, x, y, order);
+  if (isRainbow) {
+    this.drawer.redrawBottom_rainbow(text, x, y, order);
+  }else{
+    this.drawer.redrawBottom(text, x, y, order);
+  }
 }
 
 Canvas.prototype.redrawImage = function(offsetX) {
