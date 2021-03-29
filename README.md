@@ -9,7 +9,7 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 
 ![a](http://5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文字列)
 
-注意: HTTPS版は`gpapi.cyberrex.ml`です。
+注意: HTTPS版は`gsapi.cyberrex.ml`です。
 
 # spec
 画像形式: PNG (アルファチャンネルあり、背景透明)
