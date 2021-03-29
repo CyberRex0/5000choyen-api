@@ -5,8 +5,9 @@ const http = require('http');
 const escape = require('escape-html');
 const process = require('process');
 const fs = require('fs');
+const crypto = require('crypto');
 
-const APP_VER = '1.3';
+const APP_VER = '1.4';
 
 // webp-converter対策
 if (!fs.existsSync('node_modules/webp-converter/temp')) {
@@ -19,6 +20,14 @@ var _canvas = null;
 registerFont('./notobk-subset.otf', {family: 'notobk'});
 registerFont('./notoserifbk-subset.otf', {family: 'notoserifbk'});
 
+function toArrayBuffer(buffer) {
+  var ab = new ArrayBuffer(buffer.length);
+  var view = new Uint8Array(ab);
+  for (var i = 0; i < buffer.length; ++i) {
+      view[i] = buffer[i];
+  }
+  return ab;
+}
 
 http.createServer(function (req, resp) {
 
@@ -74,8 +83,35 @@ http.createServer(function (req, resp) {
       imgtype = args.type;
     }
 
-    /*resp.writeHead(200, {'Content-type': 'text/html'});
-    resp.end('test');*/
+    const sha1sum = crypto.createHash('sha1');
+    sha1sum.update(JSON.stringify(args));
+    const cachefname = sha1sum.digest('hex');
+    const cachename = '/tmp/'+cachefname+'.'+imgtype;
+    let fileExist = false;
+
+    try {
+      const cachefile = fs.statSync(cachename);
+      fileExist = true;
+    } catch(e) {
+      fileExist = false;
+    }
+
+    if (fileExist) {
+      const data = fs.readFileSync(cachename);
+      resp.writeHead(200, {'Content-type': 'image/'+imgtype});
+      resp.write(data);
+      resp.end();
+      return;
+    }
+    
+    // vulnerability countermeasures
+    if (args.top.length > 50 || args.bottom.length > 50) {
+      resp.writeHead(400, {'Content-type': 'text/html;charset=UTF-8'});
+      resp.write('<h1>Bad Request</h1>');
+      resp.end();
+      return;
+    }
+
     const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha});
 
     canvas.redrawTop(args.top, rainbow);
@@ -90,6 +126,7 @@ http.createServer(function (req, resp) {
     canvas.createBuffer(imgtype, function (data) {
        resp.write(data);
        resp.end();
+       fs.writeFileSync(cachename, data); // save cache
     });
 
     return;
