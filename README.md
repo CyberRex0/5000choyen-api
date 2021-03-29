@@ -12,9 +12,9 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 注意: HTTPS版は`gsapi.cyberrex.ml`です。
 
 # spec
-画像形式: PNG (アルファチャンネルあり、背景透明)
+画像形式: PNG/JPEG/WebP (アルファチャンネルあり、背景透明)
 
-基本解像度: 1920x1080
+最大横幅: 3840px
 
 # parameters
 
@@ -32,9 +32,9 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 
 # caution
 
-基本解像度は1920x1080ですが、文字列が短いとこの解像度より小さくなる場合があります。
+文字列が短いと横幅が自動で調整されて短くなります。
 
-どんなに長くても最大1920x1080です。
+どんなに長くても3840pxまでしか横幅は伸びません。
 
 過剰なアクセスはお控えください。
 
@@ -68,3 +68,8 @@ by Submarine.online
 by [ryoさん / ryosan1210](https://twitter.com/ryosan1210_0625)
 
 [公式ウェブサイト](https://yuika.ryosan1210.net/)
+
+## SevenBot (Discordボット)
+by [名無し。](https://twitter.com/MNoNamer)
+
+[公式ウェブサイト](https://sevenbot.jp/)

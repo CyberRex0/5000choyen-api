@@ -6,7 +6,7 @@ const escape = require('escape-html');
 const process = require('process');
 const fs = require('fs');
 
-const APP_VER = '1.2';
+const APP_VER = '1.3';
 
 // webp-converter対策
 if (!fs.existsSync('node_modules/webp-converter/temp')) {
@@ -76,7 +76,7 @@ http.createServer(function (req, resp) {
 
     /*resp.writeHead(200, {'Content-type': 'text/html'});
     resp.end('test');*/
-    const canvas = new Canvas(createCanvas(1920,1080), {hoshii: hoshii, noalpha: noalpha});
+    const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha});
 
     canvas.redrawTop(args.top, rainbow);
 
@@ -96,7 +96,7 @@ http.createServer(function (req, resp) {
 
   } else if (req.url=='/image') {
     resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
-    resp.end('使い方が間違っています。<br><a href="/">使い方を確認</a>');
+    resp.end('<h1>Invalid Request</h1>');
     return;
   }
 
