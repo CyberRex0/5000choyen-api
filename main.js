@@ -9,6 +9,8 @@ const crypto = require('crypto');
 
 const APP_VER = '1.6';
 
+let CLUSTER_ID = 1;
+
 // webp-converter対策
 if (!fs.existsSync('node_modules/webp-converter/temp')) {
   fs.mkdirSync('node_modules/webp-converter/temp');
@@ -29,11 +31,17 @@ function toArrayBuffer(buffer) {
   return ab;
 }
 
+if (process.argv.length > 2) {
+  if (!isNaN(process.argv[2])) {
+    CLUSTER_ID = Number(process.argv[2]);
+  }
+}
+
 http.createServer(function (req, resp) {
 
   if (req.url == '/' || req.url == '/index.html') {
     resp.writeHead(200, {'Content-type': 'text/html'});
-    resp.end('<!DOCTYPE html><head><meta charset="utf-8"><title>5000兆円ほしい！</title></head><body><h1>5000兆円ほしい！</h1><h2>使い方</h2><p>例: https://gsapi.cyberrex.ml/image?top=上部文字列&bottom=下部文字列</p><br><p>(C)2021 CyberRex<br>Under GPL3.0 License</p><br><small>Runtime v'+APP_VER+'</small></body></html>');
+    resp.end('<!DOCTYPE html><head><meta charset="utf-8"><title>5000兆円ほしい！</title></head><body><h1>5000兆円ほしい！</h1><h2>使い方</h2><p>例: https://gsapi.cyberrex.ml/image?top=上部文字列&bottom=下部文字列</p><br><p>(C)2021 CyberRex<br>Under GPL3.0 License</p><br><small>Runtime v'+APP_VER+'<br>Cluster#'+CLUSTER_ID+'</small></body></html>');
     return;
   }
 
