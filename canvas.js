@@ -46,10 +46,11 @@ Canvas.prototype.redrawTop = function (text, isRainbow) {
     this.drawer.redrawTop(text, x, y, order);
   }
 
-  if (this.hoshii === true)
+  if (this.hoshii === true) {
     this.redrawImage();
-  else
-    this.redrawBottom(text, isRainbow);
+  } else {
+    //this.redrawBottom(text, isRainbow);
+  }
 }
 
 Canvas.prototype.redrawBottom = function (txt, offsetX, isRainbow) {
@@ -75,8 +76,8 @@ Canvas.prototype.save = function() {
   this.drawer.save();
 }
 
-Canvas.prototype.createBuffer = function (t, callback) {
-  this.drawer.createBuffer(t, callback);
+Canvas.prototype.createBuffer = function (t, callback, q) {
+  this.drawer.createBuffer(t, callback, q);
 }
 
 module.exports = {Canvas}

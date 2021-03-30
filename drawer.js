@@ -7,6 +7,7 @@ const { SETTINGS } = require('./settings.js');
 var Drawer = function(ctx) {
   this.ctx         = ctx;
   this.actualWidth = { top: 0, bottom: 0 };
+  this.actualHeight = 0;
   this.logo        = new Hoshii();
   this.generator   = new Generator(this.ctx);
 }
@@ -106,7 +107,9 @@ Drawer.prototype.redrawTop = function(text, x, y, bgColor) {
     this.ctx.fillText(text, x, y - 3);
   }
 
-  this.actualWidth.top = this.ctx.measureText(text).width + x;
+  const textWH = this.ctx.measureText(text);
+  this.actualWidth.top = textWH.width + x;
+  this.actualHeight += 100 + y;
 }
 
 Drawer.prototype.redrawTop_rainbow = function(text, x, y, bgColor) {
@@ -267,7 +270,9 @@ Drawer.prototype.redrawTop_rainbow = function(text, x, y, bgColor) {
     this.ctx.fillText(text, x, y - 3);
   }
 
-  this.actualWidth.top = this.ctx.measureText(text).width + x;
+  const textWH = this.ctx.measureText(text);
+  this.actualWidth.top = textWH.width + x;
+  this.actualHeight += 100 + y;
 }
 
 
@@ -347,8 +352,9 @@ Drawer.prototype.redrawBottom = function(text, x, y, bgColor) {
     this.ctx.fillStyle = grad;
     this.ctx.fillText(text, x, y - 3);
   }
-
-  this.actualWidth.bottom = this.ctx.measureText(text).width + x;
+  const textWH = this.ctx.measureText(text);
+  this.actualWidth.bottom = textWH.width + x;
+  this.actualHeight = 120 + y;
 }
 
 /* 
@@ -433,8 +439,9 @@ Drawer.prototype.redrawBottom_rainbow = function(text, x, y, bgColor) {
     this.ctx.fillStyle = grad;
     this.ctx.fillText(text, x, y - 3);
   }
-
-  this.actualWidth.bottom = this.ctx.measureText(text).width + x;
+  const textWH = this.ctx.measureText(text);
+  this.actualWidth.bottom = textWH.width + x;
+  this.actualHeight += 120 + y;
 }
 
 Drawer.prototype.redrawImage = function(x, y, bgColor, callback) {
@@ -459,8 +466,8 @@ Drawer.prototype.redrawImage = function(x, y, bgColor, callback) {
     }.bind(this);
   }
 
-  //this.actualWidth.bottom = 370 + x;
   this.actualWidth.bottom = 370 + x;
+  this.actualHeight = 200 + y;
 
   if (callback) callback();
 }
@@ -472,10 +479,11 @@ Drawer.prototype.save = function() {
   this.generator.save(width, height);
 }
 
-Drawer.prototype.createBuffer = function (t, callback) {
+Drawer.prototype.createBuffer = function (t, callback, q) {
   const width = Math.max(this.actualWidth.top, this.actualWidth.bottom);
-  const height = this.ctx.canvas.height / 4;
-  this.generator.createBuffer(width, height, t, callback);
+  //const height = this.ctx.canvas.height / 4;
+  const height = this.actualHeight - 60;
+  this.generator.createBuffer(width, height, t, callback, q);
 }
 
 module.exports = {Drawer}

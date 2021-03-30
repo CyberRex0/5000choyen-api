@@ -23,7 +23,7 @@ Generator.prototype.save = function(width, height) {
   
 }
 
-Generator.prototype.createBuffer = function(width, height, t, callback) {
+Generator.prototype.createBuffer = function(width, height, t, callback, q) {
   const data = this.ctx.getImageData(0, 0, width, height);
   const canvas_width = data.width;
   const canvas_height = data.height - 10;
@@ -31,19 +31,39 @@ Generator.prototype.createBuffer = function(width, height, t, callback) {
   const ctx = canvas.getContext('2d');
   ctx.putImageData(data, 0, 0);
 
+  let quality = q;
+  if (quality < 0) {
+    quality = 10;
+  }
+  if (quality > 100) {
+    quality = 100;
+  }
+
   // WebPの場合は別な処理を行う
   if (t === 'webp') {
     // 一旦PNG出力
     canvas.toBuffer((err, buf) => {
       // Q=64でWebP変換
-      var webpbuf = webp.buffer2webpbuffer(buf, 'png');
+      var webpbuf = webp.buffer2webpbuffer(buf, 'png', '-q '+(quality ? quality : 70));
       webpbuf.then(function (b) {
         return callback(b);
       });
-    }, 'image/png');
+    }, 'image/png', {compressionLevel: 10});
     return;
   }
 
+  var encodeOption = {};
+  if (t === 'jpeg') {
+    encodeOption = {
+      quality: quality ? quality/100 : 0.8
+    };
+  }
+  if (t === 'png') {
+    encodeOption = {
+      compressionLevel: quality ? Math.floor((quality/100)*10) : 10
+    }
+  }
+  
   canvas.toBuffer((err, buf) => {
     if (err) {
       console.log(err);
@@ -51,7 +71,7 @@ Generator.prototype.createBuffer = function(width, height, t, callback) {
       return;
     }
     return callback(buf);
-  }, 'image/'+t);
+  }, 'image/'+t, encodeOption);
 }
 
 module.exports = {Generator}

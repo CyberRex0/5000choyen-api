@@ -7,7 +7,7 @@ const process = require('process');
 const fs = require('fs');
 const crypto = require('crypto');
 
-const APP_VER = '1.4';
+const APP_VER = '1.5';
 
 // webp-converter対策
 if (!fs.existsSync('node_modules/webp-converter/temp')) {
@@ -46,12 +46,7 @@ http.createServer(function (req, resp) {
     var noalpha = false;
     var rainbow = false;
     var imgtype = 'png';
-    
-    if (args.top == undefined) {
-      resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
-      resp.end('パラメータtopが不足しています。');
-      return;
-    }
+    var single = false;
 
     if (args.hoshii) {
       hoshii = args.hoshii=='true' ? true : false;
@@ -64,8 +59,18 @@ http.createServer(function (req, resp) {
     if (args.rainbow) {
       rainbow = args.rainbow=='true' ? true : false;
     }
+
+    if (args.single) {
+      single = args.single=='true' ? true : false;
+    }
+
+    if (args.top == undefined && (!single || (single && !args.bottom))) {
+      resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
+      resp.end('パラメータtopが不足しています。');
+      return;
+    }
  
-    if (args.bottom == undefined && !hoshii) {
+    if (args.bottom == undefined && !hoshii && (!single || (single && !args.top))) {
       resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
       resp.end('パラメータbottomが不足しています。');
       return;
@@ -83,10 +88,19 @@ http.createServer(function (req, resp) {
       imgtype = args.type;
     }
 
+    if (single) {
+      if (args.top && args.bottom) {
+        resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
+        resp.end('パラメータtopとbottomは同時に指定できません');
+        return;
+      }
+      single = true;
+    }
+
     const sha1sum = crypto.createHash('sha1');
     sha1sum.update(JSON.stringify(args));
     const cachefname = sha1sum.digest('hex');
-    const cachename = '/tmp/'+cachefname+'.'+imgtype;
+    const cachename = '/tmp/5000_'+cachefname+'.'+imgtype;
     let fileExist = false;
 
     try {
@@ -104,6 +118,9 @@ http.createServer(function (req, resp) {
       return;
     }
     
+    if (!args.top) args.top = '';
+    if (!args.bottom) args.bottom = '';
+
     // vulnerability countermeasures
     if (args.top.length > 50 || args.bottom.length > 50) {
       resp.writeHead(400, {'Content-type': 'text/html;charset=UTF-8'});
@@ -114,12 +131,20 @@ http.createServer(function (req, resp) {
 
     const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha});
 
-    canvas.redrawTop(args.top, rainbow);
+    if (!single) {
+      canvas.redrawTop(args.top, rainbow);
 
-    if (! hoshii) {
-      canvas.redrawBottom(args.bottom, null, rainbow);
-    } else {
-      canvas.redrawImage();
+      if (! hoshii) {
+        canvas.redrawBottom(args.bottom, null, rainbow);
+      } else {
+        canvas.redrawImage();
+      }
+    }else{
+      if (args.top) {
+        canvas.redrawTop(args.top[0], rainbow);
+      }else{
+        canvas.redrawBottom(args.bottom[0], null, rainbow);
+      }
     }
 
     resp.writeHead(200, {'Content-type': 'image/'+imgtype});
@@ -127,7 +152,7 @@ http.createServer(function (req, resp) {
        resp.write(data);
        resp.end();
        fs.writeFileSync(cachename, data); // save cache
-    });
+    }, args.q);
 
     return;
 
