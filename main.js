@@ -7,7 +7,7 @@ const process = require('process');
 const fs = require('fs');
 const crypto = require('crypto');
 
-const APP_VER = '1.5';
+const APP_VER = '1.6';
 
 // webp-converter対策
 if (!fs.existsSync('node_modules/webp-converter/temp')) {
@@ -64,15 +64,15 @@ http.createServer(function (req, resp) {
       single = args.single=='true' ? true : false;
     }
 
-    if (args.top == undefined && (!single || (single && !args.bottom))) {
-      resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
-      resp.end('パラメータtopが不足しています。');
+    if (!args.top && (!single || (single && !args.bottom))) {
+      resp.writeHead(400, {'Content-type': 'text/html;charset=utf-8'});
+      resp.end('<h1>Bad Request</h1>パラメータtopが不足しています。');
       return;
     }
  
-    if (args.bottom == undefined && !hoshii && (!single || (single && !args.top))) {
-      resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
-      resp.end('パラメータbottomが不足しています。');
+    if (!args.bottom && !hoshii && (!single || (single && !args.top))) {
+      resp.writeHead(400, {'Content-type': 'text/html;charset=utf-8'});
+      resp.end('<h1>Bad Request</h1>パラメータbottomが不足しています。');
       return;
     }
 
@@ -81,8 +81,8 @@ http.createServer(function (req, resp) {
         args.type = 'jpeg';
       }
       if (args.type != 'png' && args.type != 'jpeg' && args.type != 'webp') {
-        resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
-        resp.end('パラメータtypeの値が異常です。');
+        resp.writeHead(400, {'Content-type': 'text/html;charset=utf-8'});
+        resp.end('<h1>Bad Request</h1>パラメータtypeの値が異常です。');
         return;
       }
       imgtype = args.type;
@@ -90,8 +90,8 @@ http.createServer(function (req, resp) {
 
     if (single) {
       if (args.top && args.bottom) {
-        resp.writeHead(200, {'Content-type': 'text/html;charset=utf-8'});
-        resp.end('パラメータtopとbottomは同時に指定できません');
+        resp.writeHead(400, {'Content-type': 'text/html;charset=utf-8'});
+        resp.end('<h1>Bad Request</h1>パラメータtopとbottomは同時に指定できません');
         return;
       }
       single = true;
