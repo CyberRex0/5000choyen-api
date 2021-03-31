@@ -10,6 +10,7 @@ const crypto = require('crypto');
 const APP_VER = '1.6';
 
 let CLUSTER_ID = 1;
+let currentTasks = 0;
 
 // webp-converter対策
 if (!fs.existsSync('node_modules/webp-converter/temp')) {
@@ -48,6 +49,12 @@ http.createServer(function (req, resp) {
   }
 
   if (req.url.match(/^\/image\?/)) {
+
+    if (currentTasks > 5) {
+      resp.writeHead(429, {'Content-type': 'text/html;charset=utf-8'});
+      resp.end('<h1>Too many requests</h1>');
+      return;
+    }
 
     var queryString = req.url.split('?')[1];
     var args = [...new URLSearchParams(queryString).entries()].reduce((obj, e) => ({...obj, [e[0]]: e[1]}), {});
@@ -107,6 +114,8 @@ http.createServer(function (req, resp) {
       single = true;
     }
 
+    currentTasks++;
+
     const sha1sum = crypto.createHash('sha1');
     sha1sum.update(JSON.stringify(args));
     const cachefname = sha1sum.digest('hex');
@@ -162,8 +171,8 @@ http.createServer(function (req, resp) {
        resp.write(data);
        resp.end();
        fs.writeFileSync(cachename, data); // save cache
+       currentTasks--;
     }, args.q);
-
     return;
 
   } else if (req.url=='/image') {
