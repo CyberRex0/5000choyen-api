@@ -114,8 +114,6 @@ http.createServer(function (req, resp) {
       single = true;
     }
 
-    currentTasks++;
-
     const sha1sum = crypto.createHash('sha1');
     sha1sum.update(JSON.stringify(args));
     const cachefname = sha1sum.digest('hex');
@@ -147,7 +145,8 @@ http.createServer(function (req, resp) {
       resp.end();
       return;
     }
-
+    
+    currentTasks++;
     const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha});
 
     if (!single) {
