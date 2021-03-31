@@ -37,7 +37,7 @@ if (process.argv.length > 2) {
   }
 }
 
-if (process.env.CLID) CLID = Number(process.env.CLID);
+if (process.env.CLID) CLUSTER_ID = Number(process.env.CLID);
 
 http.createServer(function (req, resp) {
 
