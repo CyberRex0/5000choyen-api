@@ -37,6 +37,8 @@ if (process.argv.length > 2) {
   }
 }
 
+if (process.env.CLUSTER_ID) CLUSTER_ID = Number(process.env.CLUSTER_ID);
+
 http.createServer(function (req, resp) {
 
   if (req.url == '/' || req.url == '/index.html') {
