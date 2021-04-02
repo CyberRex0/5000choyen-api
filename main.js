@@ -50,7 +50,7 @@ http.createServer(function (req, resp) {
 
   if (req.url.match(/^\/image\?/)) {
 
-    if (currentTasks > 5) {
+    if (currentTasks > 16) {
       resp.writeHead(429, {'Content-type': 'text/html;charset=utf-8'});
       resp.end('<h1>Too many requests</h1>');
       return;
