@@ -7,7 +7,7 @@ const process = require('process');
 const fs = require('fs');
 const crypto = require('crypto');
 
-const APP_VER = '1.7';
+const APP_VER = '1.8';
 
 let CLUSTER_ID = 1;
 let currentTasks = 0;
@@ -64,6 +64,7 @@ http.createServer(function (req, resp) {
     var rainbow = false;
     var imgtype = 'png';
     var single = false;
+    var debug = false;
 
     if (args.hoshii) {
       hoshii = args.hoshii=='true' ? true : false;
@@ -79,6 +80,10 @@ http.createServer(function (req, resp) {
 
     if (args.single) {
       single = args.single=='true' ? true : false;
+    }
+
+    if (args.debug) {
+      debug =  args.debug=='true' ? true : false;
     }
 
     if (!args.top && (!single || (single && !args.bottom))) {
@@ -147,7 +152,7 @@ http.createServer(function (req, resp) {
     }
     
     currentTasks++;
-    const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha, single: single});
+    const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha, single: single, debug: debug});
 
     if (!single) {
       canvas.redrawTop(args.top, rainbow);

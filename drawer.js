@@ -26,6 +26,10 @@ Drawer.prototype.redrawTop = function(text, x, y, bgColor) {
     case `transparent`:
       this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
       break;
+    case `debug`:
+      this.ctx.fillStyle = 'blue';
+      this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
+      break;
   }
 
   this.ctx.setTransform(1, 0, -0.45, 1, 0, 0);
@@ -129,6 +133,10 @@ Drawer.prototype.redrawTop_rainbow = function(text, x, y, bgColor) {
       break;
     case `transparent`:
       this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
+      break;
+    case `debug`:
+      this.ctx.fillStyle = 'blue';
+      this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
       break;
   }
 
@@ -295,6 +303,12 @@ Drawer.prototype.redrawBottom = function(text, x, y, bgColor) {
     this.ctx.fillRect(0, 130, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
   } else if (bgColor === `transparent`) {
     this.ctx.clearRect(0, 130, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
+  } else if (bgColor === `debug`) {
+    this.ctx.fillStyle = 'blue';
+    this.ctx.fillRect(0, 130, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
+  }
+  if (this.config.single) {
+    this.ctx.clearRect(0,0,this.ctx.canvas.width, this.ctx.canvas.height); 
   }
 
   this.ctx.setTransform(1, 0, -0.45, 1, 0, 0);
@@ -367,7 +381,7 @@ Drawer.prototype.redrawBottom = function(text, x, y, bgColor) {
   if (!this.config.single) {
     this.actualHeight = 120 + y;
   }else{
-    this.actualHeight = this.fixedHeight;
+    this.actualHeight = this.fixedHeight - 20;
   }
 }
 
@@ -388,6 +402,12 @@ Drawer.prototype.redrawBottom_rainbow = function(text, x, y, bgColor) {
     this.ctx.fillRect(0, 130, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
   } else if (bgColor === `transparent`) {
     this.ctx.clearRect(0, 130, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
+  } else if (bgColor === `debug`) {
+    this.ctx.fillStyle = 'blue';
+    this.ctx.fillRect(0, 130, this.ctx.canvas.width, this.ctx.canvas.height / 2 + 10);
+  }
+  if (this.config.single) {
+    this.ctx.clearRect(0,0,this.ctx.canvas.width, this.ctx.canvas.height); 
   }
 
   this.ctx.setTransform(1, 0, -0.45, 1, 0, 0);

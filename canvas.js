@@ -25,6 +25,7 @@ const Canvas = function(canvas, config) {
   this.hoshii = config.hoshii;
   this.noalpha = config.noalpha;
   this.single = config.single;
+  this.debug = config.debug;
   config.offset = this.offset; // singleパラメータ処理時オーバーライド用
 
   this.drawer = new Drawer(this.ctx, config);
@@ -42,8 +43,8 @@ Canvas.prototype.lowerEndPosition = function() {
 Canvas.prototype.redrawTop = function (text, isRainbow) {
   let x     = 70;
   let y     = 100;
-  const order = this.noalpha ? 'white' : 'transparent';
-  
+  let order = this.noalpha ? 'white' : 'transparent';
+  if (this.debug) order = 'debug';
   if (this.single) {
     x = this.fixedX;
     y = 100;
@@ -66,7 +67,8 @@ Canvas.prototype.redrawBottom = function (txt, offsetX, isRainbow) {
   const text  = txt.replace(/！/, `!`);
   let x     = (offsetX || this.offset.bottom.x) + 70;
   let y     = this.offset.bottom.y + 100;
-  const order = this.noalpha ? 'white' : 'transparent';
+  let order = this.noalpha ? 'white' : 'transparent';
+  if (this.debug) order = 'debug';
   if (this.single) {
     x = this.fixedX;
     y = 100;
@@ -81,7 +83,8 @@ Canvas.prototype.redrawBottom = function (txt, offsetX, isRainbow) {
 Canvas.prototype.redrawImage = function(offsetX) {
   const x     = (offsetX || this.offset.bottom.x) + 70;
   const y     = this.offset.bottom.y;
-  const order = this.noalpha ? 'white' : 'transparent';
+  let order = this.noalpha ? 'white' : 'transparent';
+  if (this.debug) order = 'debug';
   this.drawer.redrawImage(x, y, order);
 }
 
