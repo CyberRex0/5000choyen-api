@@ -51,6 +51,11 @@ DDoS Protection by
 
 <img src="https://cyberrex.rsvr.jp/cf-logo-v-rgb.png" width="320">
 
+# support
+5000兆円APIのサポートはGitHubのIssue、またはDiscordサーバーで受け付けています。
+
+Discordサーバーは[こちら](https://discord.gg/AWDSYhJHgk)
+
 # fonts
 このジェネレーターは以下のフォントを使用しています。
 
