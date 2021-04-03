@@ -7,7 +7,7 @@ const process = require('process');
 const fs = require('fs');
 const crypto = require('crypto');
 
-const APP_VER = '1.6';
+const APP_VER = '1.7';
 
 let CLUSTER_ID = 1;
 let currentTasks = 0;
@@ -147,7 +147,7 @@ http.createServer(function (req, resp) {
     }
     
     currentTasks++;
-    const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha});
+    const canvas = new Canvas(createCanvas(3840,1080), {hoshii: hoshii, noalpha: noalpha, single: single});
 
     if (!single) {
       canvas.redrawTop(args.top, rainbow);
@@ -159,9 +159,9 @@ http.createServer(function (req, resp) {
       }
     }else{
       if (args.top) {
-        canvas.redrawTop(args.top[0], rainbow);
+        canvas.redrawTop(args.top, rainbow);
       }else{
-        canvas.redrawBottom(args.bottom[0], null, rainbow);
+        canvas.redrawBottom(args.bottom, null, rainbow);
       }
     }
 

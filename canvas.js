@@ -17,13 +17,17 @@ const Canvas = function(canvas, config) {
     bottom: { x: 250, y: 130 }
   };
 
+  this.fixedX = 60;
+
   this.dragging = false;
   this.dragPosition = { x0: 0, y0: 0 };
 
   this.hoshii = config.hoshii;
   this.noalpha = config.noalpha;
+  this.single = config.single;
+  config.offset = this.offset; // singleパラメータ処理時オーバーライド用
 
-  this.drawer = new Drawer(this.ctx);
+  this.drawer = new Drawer(this.ctx, config);
 }
 
 
@@ -36,10 +40,15 @@ Canvas.prototype.lowerEndPosition = function() {
 }
 
 Canvas.prototype.redrawTop = function (text, isRainbow) {
-  const x     = 70;
-  const y     = 100;
+  let x     = 70;
+  let y     = 100;
   const order = this.noalpha ? 'white' : 'transparent';
   
+  if (this.single) {
+    x = this.fixedX;
+    y = 100;
+  }
+
   if (isRainbow) {
     this.drawer.redrawTop_rainbow(text, x, y, order);
   }else{
@@ -55,9 +64,13 @@ Canvas.prototype.redrawTop = function (text, isRainbow) {
 
 Canvas.prototype.redrawBottom = function (txt, offsetX, isRainbow) {
   const text  = txt.replace(/！/, `!`);
-  const x     = (offsetX || this.offset.bottom.x) + 70;
-  const y     = this.offset.bottom.y + 100;
+  let x     = (offsetX || this.offset.bottom.x) + 70;
+  let y     = this.offset.bottom.y + 100;
   const order = this.noalpha ? 'white' : 'transparent';
+  if (this.single) {
+    x = this.fixedX;
+    y = 100;
+  }
   if (isRainbow) {
     this.drawer.redrawBottom_rainbow(text, x, y, order);
   }else{

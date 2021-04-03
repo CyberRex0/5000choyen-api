@@ -26,14 +26,13 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 |q|-|画質(1～100)|
 |hoshii|true/false|下部文字列を「欲しい！」に固定する|
 |noalpha|true/false|背景色を白にする|
-|rainbow|true/false|虹色にする ※１|
-|single|true/false|1文字だけレンダリング ※２|
+|rainbow|true/false|虹色にする ※1|
+|single|true/false|上部・下部どちらかをレンダリング ※2|
 
-※１：hoshiiが`true`の場合、下部は虹色になりません。
+※1：hoshiiが`true`の場合、下部は虹色になりません。
 
-※２：topとbottomを両方指定するとエラーになります。
+※2：topとbottomを両方指定するとエラーになります。
 　　　hoshiiは無視されます。
-　　　1文字以上指定しても無視され、最初の1文字だけがレンダリングされます。
 
 # caution
 

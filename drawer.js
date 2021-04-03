@@ -4,12 +4,14 @@ const { Hoshii } = require('./hoshii.js');
 const { Generator } = require('./generator.js');
 const { SETTINGS } = require('./settings.js');
 
-var Drawer = function(ctx) {
+var Drawer = function(ctx, config) {
   this.ctx         = ctx;
   this.actualWidth = { top: 0, bottom: 0 };
   this.actualHeight = 0;
   this.logo        = new Hoshii();
   this.generator   = new Generator(this.ctx);
+  this.config = config;
+  this.fixedHeight = 220;
 }
 
 Drawer.prototype.redrawTop = function(text, x, y, bgColor) {
@@ -109,7 +111,11 @@ Drawer.prototype.redrawTop = function(text, x, y, bgColor) {
 
   const textWH = this.ctx.measureText(text);
   this.actualWidth.top = textWH.width + x;
-  this.actualHeight += 100 + y;
+  if (!this.config.single) {
+    this.actualHeight = 120 + y;
+  }else{
+    this.actualHeight = this.fixedHeight;
+  }
 }
 
 Drawer.prototype.redrawTop_rainbow = function(text, x, y, bgColor) {
@@ -272,7 +278,11 @@ Drawer.prototype.redrawTop_rainbow = function(text, x, y, bgColor) {
 
   const textWH = this.ctx.measureText(text);
   this.actualWidth.top = textWH.width + x;
-  this.actualHeight += 100 + y;
+  if (!this.config.single) {
+    this.actualHeight = 120 + y;
+  }else{
+    this.actualHeight = this.fixedHeight;
+  }
 }
 
 
@@ -354,7 +364,11 @@ Drawer.prototype.redrawBottom = function(text, x, y, bgColor) {
   }
   const textWH = this.ctx.measureText(text);
   this.actualWidth.bottom = textWH.width + x;
-  this.actualHeight = 120 + y;
+  if (!this.config.single) {
+    this.actualHeight = 120 + y;
+  }else{
+    this.actualHeight = this.fixedHeight;
+  }
 }
 
 /* 
@@ -441,7 +455,11 @@ Drawer.prototype.redrawBottom_rainbow = function(text, x, y, bgColor) {
   }
   const textWH = this.ctx.measureText(text);
   this.actualWidth.bottom = textWH.width + x;
-  this.actualHeight += 120 + y;
+  if (!this.config.single) {
+    this.actualHeight = 120 + y;
+  }else{
+    this.actualHeight = this.fixedHeight;
+  }
 }
 
 Drawer.prototype.redrawImage = function(x, y, bgColor, callback) {
