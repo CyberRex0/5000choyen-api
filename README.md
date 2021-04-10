@@ -88,12 +88,20 @@ by [名無し。](https://twitter.com/MNoNamer)
 ## 5000兆円欲しいジェネレーター
 by [ゆ～ぺぃ/YU-PEI](https://twitter.com/nerrog_blog)
 
-## Windows10用
+### Windows10用
 
 [インストール方法](https://github.com/nerrog/5000choyen-gen#インストール)
 
-## Appleデバイス用
+### Appleデバイス用
 
 ※iOS/iPadOS 12.3以降、macOS 11.0以降またはM1 Macが必要です。
 
 [Download on the App Store](https://apps.apple.com/jp/app/5000%E5%85%86%E5%86%86%E6%AC%B2%E3%81%97%E3%81%84-%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC/id1561524482)
+
+## 5000兆円欲しい！ジェネレーター for Twitter 
+
+ブラウザでTwitterを使う際、ツイート画面にジェネレーターを設置します。
+
+[Chromeはこちら](https://chrome.google.com/webstore/detail/5000%E5%85%86%E5%86%86%E6%AC%B2%E3%81%97%E3%81%84%EF%BC%81%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC-for-twi/ligkpmbekohamaijpdfgplnkefamiohm)
+
+[Firefoxはこちら(v1.0)](https://cdn.cyberrex.ml/dl/plugin/5000choyen_generator_for_twitter/fx/5000choyen_generator_for_twitter-1.0-an%2Bfx.xpi)
