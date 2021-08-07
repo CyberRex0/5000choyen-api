@@ -23,10 +23,10 @@
     "ajv": "^8.0.1",
     "canvas": "^2.7.0",
     "escape-html": "^1.0.3",
-    "eslint": "^4.19.1",
+    "eslint": "^7.32.0",
     "webp-converter": "^2.3.3"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   }
 }
