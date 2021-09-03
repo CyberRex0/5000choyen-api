@@ -81,7 +81,7 @@ by [ryoさん / ryosan1210](https://twitter.com/ryosan1210_0625)
 ## SevenBot (Discordボット)
 ![`sb#image 5000 このAPI 便利！`](https://imgur.com/ht4mxep.png)
 
-by [名無し。](https://twitter.com/MNoNamer)
+by [名無し｡](https://twitter.com/sevenc_nanashi)
 
 [公式ウェブサイト](https://sevenbot.jp/)
 
