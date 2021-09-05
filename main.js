@@ -7,7 +7,18 @@ const process = require('process');
 const fs = require('fs');
 const crypto = require('crypto');
 
-const APP_VER = '1.8';
+var server_config;
+
+try {
+  server_config = require('./server_config.json');
+} catch (e) {
+  server_config = {
+    hostname: null || process.env.GSAPI_HOSTNAME,
+    ssl: false || (process.env.GSAPI_SSL=='1'?true:false)
+  }
+}
+
+const APP_VER = '2.0';
 
 let CLUSTER_ID = 1;
 let currentTasks = 0;
@@ -40,11 +51,26 @@ if (process.argv.length > 2) {
 
 if (process.env.CLID) CLUSTER_ID = Number(process.env.CLID);
 
+const PORT = process.env.PORT || 8080;
+
+console.log(`
+*** 5000choyen API Server v${APP_VER} ***
+(C)2021 CyberRex
+
+Hostname: ${server_config.hostname}
+
+Listening on 127.0.0.1 port ${PORT}
+
+URL: ${server_config.ssl?'https':'http'}://${server_config.hostname?server_config.hostname:'127.0.0.1'}${PORT==80?'':':'+PORT}/
+`);
+
 http.createServer(function (req, resp) {
+
+  var hostname = server_config.hostname || req.host;
 
   if (req.url == '/' || req.url == '/index.html') {
     resp.writeHead(200, {'Content-type': 'text/html'});
-    resp.end('<!DOCTYPE html><head><meta charset="utf-8"><title>5000兆円ほしい！</title></head><body><h1>5000兆円ほしい！</h1><h2>使い方</h2><p>例: https://gsapi.cyberrex.ml/image?top=上部文字列&bottom=下部文字列</p><br><p>(C)2021 CyberRex<br>Under GPL3.0 License</p><br><small>Runtime v'+APP_VER+'<br>Cluster#'+CLUSTER_ID+'</small></body></html>');
+    resp.end('<!DOCTYPE html><head><meta charset="utf-8"><title>5000兆円ほしい！</title></head><body><h1>5000兆円ほしい！</h1><h2>使い方</h2><p>例: ' + (server_config.ssl ? 'https':'http') + '://' + hostname + '/image?top=上部文字列&bottom=下部文字列</p><br><p>(C)2021 CyberRex<br>Under GPL3.0 License</p><br><small>Runtime v'+APP_VER+'<br>Cluster#'+CLUSTER_ID+'</small></body></html>');
     return;
   }
 
@@ -189,4 +215,4 @@ http.createServer(function (req, resp) {
   resp.end('<h1>Not Found</h1><p>The requested URL '+escape(req.url)+' was not found on this server.</p>');
 
 
-}).listen(process.env.PORT || 8080);
+}).listen(PORT);

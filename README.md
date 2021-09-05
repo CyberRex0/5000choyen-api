@@ -3,16 +3,16 @@
 
 # how to use
 
-http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文字列
+https:\/\/gsapi.cyberrex.jp/image?top=上部文字列&bottom=下部文字列
 
 ↓
 
-![a](http://5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文字列)
+![a](https://gsapi.cyberrex.jp/image?top=上部文字列&bottom=下部文字列)
 
-注意: HTTPS版は`gsapi.cyberrex.ml`です。
+※以前の2つのドメインは2021年9月11日で廃止になります。
 
 # spec
-画像形式: PNG/JPEG/WebP (アルファチャンネルあり、背景透明)
+画像形式: PNG/WebP (アルファチャンネルあり、背景透明)、JPEG
 
 最大横幅: 3840px
 
@@ -31,8 +31,31 @@ http:\/\/5000choyen.app.cyberrex.ml/image?top=上部文字列&bottom=下部文�
 
 ※1：hoshiiが`true`の場合、下部は虹色になりません。
 
-※2：topとbottomを両方指定するとエラーになります。
-　　　hoshiiは無視されます。
+※2：topとbottomを両方指定するとエラーになります。hoshiiは無視されます。
+
+# server configuration
+サーバーの設定を変えることができます。
+ホスト名とSSLの有無を設定できます。なおこれは表示に関わる設定で動作自体に影響はありません。
+
+`server_config.json` をサーバープログラムがあるディレクトリに配置するか、環境変数 `GSAPI_HOSTNAME` `GSAPI_SSL` で設定可能です。(Herokuなどでは環境変数で設定するほうが簡単です)
+
+JSONの例は以下のとおりです。
+
+```json
+{
+    "hostname": "gsapi.cyberrex.jp",
+    "ssl": true
+}
+```
+
+環境変数の例は以下のとおりです。
+
+```
+GSAPI_HOSTNAME="gsapi.cyberrex.jp"
+GSAPI_SSL="1" # 1=true, 0=false
+```
+
+反映優先順は　設定ファイル > 環境変数 です。
 
 # caution
 
