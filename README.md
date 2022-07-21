@@ -1,13 +1,13 @@
-﻿# 5000choyen-api
+# 5000choyen-api
 5000兆円欲しい！をnode-canvasを使用しサーバーサイドで生成できるようにしたものです。
 
 # how to use
 
-https:\/\/gsapi.cyberrex.jp/image?top=上部文字列&bottom=下部文字列
+https:\/\/gsapi.cbrx.io/image?top=上部文字列&bottom=下部文字列
 
 ↓
 
-![a](https://gsapi.cyberrex.jp/image?top=上部文字列&bottom=下部文字列)
+![a](https://gsapi.cbrx.io/image?top=上部文字列&bottom=下部文字列)
 
 ※以前の2つのドメインは2021年9月11日で廃止になります。
 
@@ -43,7 +43,7 @@ JSONの例は以下のとおりです。
 
 ```json
 {
-    "hostname": "gsapi.cyberrex.jp",
+    "hostname": "gsapi.cbrx.io",
     "ssl": true
 }
 ```
@@ -51,7 +51,7 @@ JSONの例は以下のとおりです。
 環境変数の例は以下のとおりです。
 
 ```
-GSAPI_HOSTNAME="gsapi.cyberrex.jp"
+GSAPI_HOSTNAME="gsapi.cbrx.io"
 GSAPI_SSL="1" # 1=true, 0=false
 ```
 
@@ -72,7 +72,7 @@ GSAPI_SSL="1" # 1=true, 0=false
 
 DDoS Protection by
 
-<img src="https://cyberrex.rsvr.jp/cf-logo-v-rgb.png" width="320">
+<img src="https://cyberrex.rsw.jp/cf-logo-v-rgb.png" width="320">
 
 # support
 5000兆円APIのサポートはGitHubのIssue、またはDiscordサーバーで受け付けています。
