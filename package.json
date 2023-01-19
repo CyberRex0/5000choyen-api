@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CyberRex0/5000choyena-api.git"
+    "url": "git+https://github.com/CyberRex0/5000choyen-api.git"
   },
   "author": "",
   "license": "ISC",
@@ -20,13 +20,12 @@
   },
   "homepage": "https://github.com/CyberRex0/5000choyen-api#readme",
   "dependencies": {
-    "ajv": "^8.0.1",
-    "canvas": "^2.7.0",
+    "ajv": "^8.12.0",
+    "canvas": "^2.11.0",
     "escape-html": "^1.0.3",
-    "eslint": "^7.32.0",
     "webp-converter": "^2.3.3"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   }
 }
