@@ -55,7 +55,7 @@ const PORT = process.env.PORT || 8080;
 
 console.log(`
 *** 5000choyen API Server v${APP_VER} ***
-(C)2021 CyberRex
+(C)2021-2026 CyberRex
 
 Hostname: ${server_config.hostname}
 
